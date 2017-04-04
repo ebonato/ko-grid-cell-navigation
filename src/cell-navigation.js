@@ -52,7 +52,7 @@ define(['module', 'knockout', 'onefold-dom', 'ko-grid'], function (module, ko, d
                     case KEY_CODE_TAB:
                         return move(0, multiplier, true);
                     case KEY_CODE_ENTER:
-                        return move(multiplier, 0);
+                        return move(0, multiplier, true);
                 }
             });
 
@@ -80,6 +80,13 @@ define(['module', 'knockout', 'onefold-dom', 'ko-grid'], function (module, ko, d
                     newColIndex = 0;
                 }
 
+                if (rowWise == 1 && grid.bindingValue.OnRowEnding && newRowIndex >= rows.length) {
+                   grid.bindingValue.OnRowEnding();
+                   setTimeout(function () {
+                      move(rowWise, columnWise, wrap);
+                   }, 100);
+                }
+
                 newColIndex = Math.max(0, Math.min(cols.length - 1, newColIndex));
                 newRowIndex = Math.max(0, Math.min(rows.length - 1, newRowIndex));
 
@@ -98,7 +105,16 @@ define(['module', 'knockout', 'onefold-dom', 'ko-grid'], function (module, ko, d
                         focusParking.setSelectionRange(0, focusParking.value.length);
                         focussable = focusParking;
                     }
-                    focussable.focus();
+                    //Eduardo - Bug over Scroll in Chrome, when user gives an focus on cell editor
+                    //https://bugs.chromium.org/p/chromium/issues/detail?id=682103
+                    //https://bugs.chromium.org/p/chromium/issues/detail?id=681382
+                    //https://bugs.chromium.org/p/chromium/issues/detail?id=675567
+                    //https://bugs.chromium.org/p/chromium/issues/detail?id=664246
+                    //Wait for bug final status, so we don't do a real focus for a while
+                    var isChrome = !!window['chrome'];
+                    if (!isChrome) {
+                       focussable.focus();
+                    }
                 }
 
                 scrollIntoView(cell.element);
