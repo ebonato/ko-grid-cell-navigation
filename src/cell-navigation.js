@@ -101,7 +101,7 @@ define(['module', 'knockout', 'onefold-dom', 'ko-grid'], function (module, ko, d
                 if (!dom.isOrContains(grid.rootElement, window.document.activeElement)) {
                     var focussable = cell.element.querySelector('input, select, textarea');
                     if (!focussable) {
-                        focusParking.value = column.renderValue(ko.unwrap(column.property.indexOf('.') == -1 ? row[column.property] : eval('row.'+column.property)))
+                        focusParking.value = column.renderValue(ko.unwrap(column.property.indexOf('.') == -1 ? row[column.property] : eval('row.'+column.property)));
                         focusParking.setSelectionRange(0, focusParking.value.length);
                         focussable = focusParking;
                     }
