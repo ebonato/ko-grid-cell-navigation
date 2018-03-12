@@ -2,7 +2,7 @@
   "name": "ko-grid-cell-navigation",
   "main": "dist/ko-grid-cell-navigation.js",
   "description": "A ko-grid extension for navigating between data cells by keyboard.",
-  "authors": ["Ben Schulz (https://github.com/benschulz)"],
+  "authors": ["Eduardo Bonato (https://github.com/ebonato)"],
   "license": "BSD-3-Clause",
   "keywords": [
     "ko-grid",
@@ -10,11 +10,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/benschulz/ko-grid-cell-navigation.git"
+    "url": "http://github.com/ebonato/ko-grid-cell-navigation.git"
   },
   "dependencies": {
     "knockout": "^3.3.0",
-    "ko-grid": "benschulz/ko-grid"
+    "ko-grid": "ebonato/ko-grid"
   },
   "devDependencies": {
     "onefold-dom": "benschulz/onefold-dom"
